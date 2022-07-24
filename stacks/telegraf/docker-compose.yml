@@ -1,0 +1,26 @@
+version: "3.3"
+
+services:
+  telegraf:
+    image: telegraf:1.21
+    user: root
+    networks:
+      - influx_network
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    configs:
+      - source: config
+        target: /etc/telegraf/telegraf.conf
+    deploy:
+      restart_policy:
+        condition: on-failure
+      mode: global
+    env_file: ../../.env
+
+configs:
+  config:
+    file: ./telegraf.conf
+
+networks:
+  influx_network:
+    external: true

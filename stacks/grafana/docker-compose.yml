@@ -1,0 +1,14 @@
+version: "3.2"
+
+services:
+  grafana:
+    image: grafana/grafana:9.0.5
+    networks:
+      - routing
+    volumes:
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources/
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards/
+
+networks:
+  routing:
+    external: true
