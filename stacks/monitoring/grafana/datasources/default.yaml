@@ -10,5 +10,5 @@ datasources:
     access: proxy
     orgId: 1
     uid: DubHLik4k
-    url: http://monitoring_prometheus:9090
+    url: http://prometheus:9090
     editable: true

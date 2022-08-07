@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<div>Hello there! Env: <span id="env">loading...</span></div>
+<div>Hello there! Current environment: <span id="env">loading...</span></div>
 <script>
     fetch('/api/environment')
         .then(r => r.text())

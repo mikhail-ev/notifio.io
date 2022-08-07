@@ -17,9 +17,6 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     deploy:
       replicas: 1
-      placement:
-        constraints:
-          - node.role == manager
     networks:
       - routing
       - prometheus
