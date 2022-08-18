@@ -49,12 +49,12 @@ services:
       - ${APP_CERTS_HOST_LOCATION}:${APP_CERTS_CONTAINER_LOCATION}
       - ./nginx:/etc/nginx/includes
     command: >
-      sh -c "mkdir /etc/nginx/includes &&
-             envsubst '$$APP_DEV_VPN_ADDRESS ' < /etc/nginx/includes/access.conf > /etc/nginx/includes/access.conf.tmp && 
-             mv /etc/nginx/includes/access.conf.tmp /etc/nginx/includes/access.conf &&
-             envsubst '$$APP_CERTIFICATE_PATH $$APP_CERTIFICATE_KEY_PATH' < /etc/nginx/includes/ssl.conf > /etc/nginx/includes/ssl.conf.tmp &&
-             mv /etc/nginx/includes/ssl.conf.tmp /etc/nginx/includes/ssl.conf &&
-             envsubst '$$APP_DOMAIN' < /etc/nginx/includes/nginx.conf > /etc/nginx/conf.d/default.conf &&
+      sh -c "mkdir /etc/nginx/partials &&
+             envsubst '$$APP_DEV_VPN_ADDRESS ' < /etc/nginx/partials/access.conf > /etc/nginx/partials/access.conf.tmp && 
+             mv /etc/nginx/partials/access.conf.tmp /etc/nginx/partials/access.conf &&
+             envsubst '$$APP_CERTIFICATE_PATH $$APP_CERTIFICATE_KEY_PATH' < /etc/nginx/partials/ssl.conf > /etc/nginx/partials/ssl.conf.tmp &&
+             mv /etc/nginx/partials/ssl.conf.tmp /etc/nginx/partials/ssl.conf &&
+             envsubst '$$APP_DOMAIN' < /etc/nginx/partials/nginx.conf > /etc/nginx/conf.d/default.conf &&
              nginx -g 'daemon off;'"
 
   registry:
