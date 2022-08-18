@@ -49,8 +49,7 @@ services:
       - ${APP_CERTS_HOST_LOCATION}:${APP_CERTS_CONTAINER_LOCATION}
       - ./nginx:/etc/nginx/partials
     command: >
-      sh -c "mkdir /etc/nginx/partials &&
-             envsubst '$$APP_DEV_VPN_ADDRESS ' < /etc/nginx/partials/access.conf > /etc/nginx/partials/access.conf.tmp && 
+      sh -c "envsubst '$$APP_DEV_VPN_ADDRESS ' < /etc/nginx/partials/access.conf > /etc/nginx/partials/access.conf.tmp && 
              mv /etc/nginx/partials/access.conf.tmp /etc/nginx/partials/access.conf &&
              envsubst '$$APP_CERTIFICATE_PATH $$APP_CERTIFICATE_KEY_PATH' < /etc/nginx/partials/ssl.conf > /etc/nginx/partials/ssl.conf.tmp &&
              mv /etc/nginx/partials/ssl.conf.tmp /etc/nginx/partials/ssl.conf &&
