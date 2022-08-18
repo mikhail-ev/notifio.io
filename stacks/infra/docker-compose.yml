@@ -47,7 +47,7 @@ services:
       - APP_CERTIFICATE_KEY_PATH
     volumes:
       - ${APP_CERTS_HOST_LOCATION}:${APP_CERTS_CONTAINER_LOCATION}
-      - ./nginx:/etc/nginx/includes
+      - ./nginx:/etc/nginx/partials
     command: >
       sh -c "mkdir /etc/nginx/partials &&
              envsubst '$$APP_DEV_VPN_ADDRESS ' < /etc/nginx/partials/access.conf > /etc/nginx/partials/access.conf.tmp && 
