@@ -127,7 +127,7 @@ All commands to be executed from manager node.
 Clone the repository and open the project:
 ```shell
 git clone https://github.com/mikhail-ev/notifio.io.git
-cd notifio.io
+cd notifio.io # TODO change
 ```
 
 Create a routing network:
