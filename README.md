@@ -1,6 +1,6 @@
 # Docker Swarm Boilerplate for Multiple Environments
 
-Some short description
+Some short description TBD
 
 ## Features
 
@@ -33,7 +33,13 @@ The boilerplate contains all the necessary tools:
 
 ## System design
 
-Image here
+### Routing
+
+![System design](./resources/diagrams/notifio-routing.drawio.png)
+
+### Networking
+
+![System design](./resources/diagrams/notifio-networking.drawio.png)
 
 ## Install
 
@@ -103,7 +109,7 @@ export APP_DOMAIN=notifio.io
 export APP_VERSION=0.1.0-beta
 
 # App dev VPN IP address
-export APP_DEV_VPN_ADDRESS=46.101.140.42
+export APP_DEV_VPN_ADDRESS=1.1.1.1
 
 # 
 export APP_CERTS_HOST_LOCATION=/etc/letsencrypt
@@ -190,4 +196,17 @@ docker stack deploy --compose-file docker-compose.yml --with-registry-auth produ
 ## Usage
 
 ### Portainer registry provision
+
+TBD
+
+## Roadmap and TODOs
+
+### Roadmap
+
+TBD
+
+### TODOs
+
+- [ ] Split `staging` env into multiple on-demand environments of the second level
+- [ ] Set consistent naming among networks
  
