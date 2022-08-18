@@ -53,7 +53,7 @@ services:
              envsubst < /etc/nginx/sources/access.conf > /etc/nginx/included/access.conf &&
              envsubst < /etc/nginx/sources/ssl.conf > /etc/nginx/included/ssl.conf &&
              envsubst < /etc/nginx/sources/proxy.conf > /etc/nginx/included/proxy.conf &&
-             envsubst < /etc/nginx/includes/nginx.conf > /etc/nginx/conf.d/default.conf &&
+             envsubst < /etc/nginx/sources/nginx.conf > /etc/nginx/conf.d/default.conf &&
              nginx -g 'daemon off;'"
 
   registry:
