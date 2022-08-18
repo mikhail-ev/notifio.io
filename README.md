@@ -100,10 +100,10 @@ docker swarm join --token <token> <ip>
 export APP_DOMAIN=notifio.io
 
 # An arbitrary string to tag app's images  
-export APP_VERSION=0.0.1-beta
+export APP_VERSION=0.1.0-beta
 
 # App dev VPN IP address
-export APP_DEV_VPN_ADDRESS=1.1.1.1
+export APP_DEV_VPN_ADDRESS=46.101.140.42
 
 # 
 export APP_CERTS_HOST_LOCATION=/etc/letsencrypt
@@ -112,7 +112,7 @@ export APP_CERTS_HOST_LOCATION=/etc/letsencrypt
 export APP_CERTS_CONTAINER_LOCATION=/etc/letsencrypt
 
 # Including APP_CERTS_CONTAINER_LOCATION
-export APP_CERTIFICATE_PATH=${APP_CERTS_CONTAINER_LOCATION}/live/app/fullchain.pem
+export APP_CERTIFICATE_PATH=${APP_CERTS_CONTAINER_LOCATION}/live/notifio.io/fullchain.pem
 
 # Including APP_CERTS_CONTAINER_LOCATION
 export APP_CERTIFICATE_KEY_PATH=${APP_CERTS_CONTAINER_LOCATION}/live/notifio.io/privkey.pem
@@ -190,3 +190,4 @@ docker stack deploy --compose-file docker-compose.yml --with-registry-auth produ
 ## Usage
 
 ### Portainer registry provision
+ 
