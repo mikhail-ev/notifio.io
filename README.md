@@ -40,6 +40,7 @@ Image here
 ### Prerequisites
 
 - Ubuntu 20 LTS
+- sudo access
 
 ### SSL Certificate acquisition
 
@@ -90,6 +91,31 @@ rm get-docker.sh
 Join the swarm replacing the `<token>` and `<ip>` with values provided during the manager setup
 ```shell
 docker swarm join --token <token> <ip>
+```
+
+### Environment variables setup
+
+```shell
+# App domain name (without www, slashes or scheme)
+export APP_DOMAIN=notifio.io
+
+# An arbitrary string to tag app's images  
+export APP_VERSION=0.0.1-beta
+
+# App dev VPN IP address
+export APP_DEV_VPN_ADDRESS=1.1.1.1
+
+# 
+export APP_CERTS_HOST_LOCATION=/etc/letsencrypt
+
+#
+export APP_CERTS_CONTAINER_LOCATION=/etc/letsencrypt
+
+# Including APP_CERTS_CONTAINER_LOCATION
+export APP_CERTIFICATE_PATH=${APP_CERTS_CONTAINER_LOCATION}/live/app/fullchain.pem
+
+# Including APP_CERTS_CONTAINER_LOCATION
+export APP_CERTIFICATE_KEY_PATH=${APP_CERTS_CONTAINER_LOCATION}/live/notifio.io/privkey.pem
 ```
 
 ### Application deployment
@@ -163,4 +189,4 @@ docker stack deploy --compose-file docker-compose.yml --with-registry-auth produ
 
 ## Usage
 
-TBD
+### Portainer registry provision

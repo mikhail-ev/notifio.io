@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  agent:
+  portainer_agent:
     image: portainer/agent:2.11.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -13,7 +13,7 @@ services:
 
   portainer:
     image: portainer/portainer-ce:2.11.1
-    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    command: -H tcp://tasks.portainer_agent:9001 --tlsskipverify
     volumes:
       - portainer_data:/data
     networks:
@@ -23,7 +23,7 @@ services:
       mode: replicated
       replicas: 1
 
-  env-proxy:
+  nginx:
     image: nginx:1.23.0
     deploy:
       replicas: 1
@@ -40,9 +40,20 @@ services:
         mode: host
     networks:
       - routing
+    environment:
+      - APP_DOMAIN
+      - APP_DEV_VPN_ADDRESS
+      - APP_CERTIFICATE_PATH
+      - APP_CERTIFICATE_KEY_PATH
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ${APP_CERTS_HOST_LOCATION}:${APP_CERTS_CONTAINER_LOCATION}
+      - ./nginx:/etc/nginx/conf.d/sources
+    command: >
+      sh -c "envsubst < /etc/nginx/conf.d/sources/access.conf > /etc/nginx/conf.d/sources/access.conf &&
+             envsubst < /etc/nginx/conf.d/sources/ssl.conf > /etc/nginx/conf.d/sources/ssl.conf &&
+             envsubst < /etc/nginx/conf.d/sources/proxy.conf > /etc/nginx/conf.d/sources/proxy.conf &&
+             envsubst < /etc/nginx/conf.d/sources/nginx.conf > /etc/nginx/conf.d/default.conf &&
+             nginx -g 'daemon off;'"
 
   registry:
     image: registry:2
