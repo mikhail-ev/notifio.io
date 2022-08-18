@@ -49,7 +49,7 @@ services:
       - ${APP_CERTS_HOST_LOCATION}:${APP_CERTS_CONTAINER_LOCATION}
       - ./nginx:/etc/nginx/sources
     command: >
-      sh -c "mkdir /etc/nginx/conf.d/rendered &&
+      sh -c "mkdir /etc/nginx/included &&
              envsubst < /etc/nginx/sources/access.conf > /etc/nginx/included/access.conf &&
              envsubst < /etc/nginx/sources/ssl.conf > /etc/nginx/included/ssl.conf &&
              envsubst < /etc/nginx/sources/proxy.conf > /etc/nginx/included/proxy.conf &&
